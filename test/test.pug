@@ -142,7 +142,7 @@ html
     p(aprop).lol.lil#theid(style="background-color: black; color: white;").lul(anotherprop='TEST')
       | tag with any combination/order of id/classes/attributes
 
-    include page
+    include page.html
 
     block testblock1
       div.lala-block this is in testblock1
@@ -164,7 +164,7 @@ html
 
     div(style="color: red;"): append testblock1
 
-    div(style="color: green;"): include page
+    div(style="color: green;"): include page.html
 
     div(style="color: blue;"): +lala
 
