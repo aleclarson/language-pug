@@ -1,8 +1,6 @@
-fileTypes: [
-  "jade",
-  "pug"
-]
 name: "Pug"
+scopeName: "source.pug"
+fileTypes: ["pug", "jade"]
 patterns: [
   {
     include: "#unbuffered_comments"
@@ -585,6 +583,7 @@ repository:
     comment: "Template blocks and includes."
     match: "(extends|include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)$"
     name: "meta.first-class.pug"
+
   case_conds:
     begin: "(default|when)((\\s+|(?=:))|$)"
     captures:
@@ -618,6 +617,7 @@ repository:
         ]
       }
     ]
+
   case_when_paren:
     begin: "\\("
     end: "\\)"
@@ -634,6 +634,7 @@ repository:
         include: "source.embedded.js"
       }
     ]
+
   complete_tag:
     begin: "(?=[\\w.#])|(:\\s*)"
     end: "(\\.?$)|(?=:.)"
@@ -684,6 +685,7 @@ repository:
         include: "#tag_text"
       }
     ]
+
   embedded_html:
     begin: "(?=<[^>]*>)"
     end: "$|(?=>)"
@@ -699,6 +701,7 @@ repository:
         include: "#interpolated_error"
       }
     ]
+
   filter_args:
     begin: "\\G(\\()"
     captures:
@@ -725,6 +728,7 @@ repository:
         ]
       }
     ]
+
   filter_args_paren:
     begin: "\\("
     end: "\\)|$"
@@ -733,6 +737,7 @@ repository:
         include: "#filter_args_paren"
       }
     ]
+
   flow_control:
     begin: "(for|if|else if|else|each|until|while|unless|case)(\\s+|$)"
     captures:
@@ -753,6 +758,7 @@ repository:
         ]
       }
     ]
+
   html_entity:
     patterns: [
       {
@@ -764,6 +770,7 @@ repository:
         name: "invalid.illegal.html_entity.text.pug"
       }
     ]
+
   inline_pug:
     begin: "(?<!\\\\)(#\\[)"
     captures:
@@ -823,6 +830,7 @@ repository:
         include: "#inline_pug_text"
       }
     ]
+
   inline_pug_text:
     begin: ""
     end: "(?=\\])"
@@ -852,9 +860,11 @@ repository:
         include: "#interpolated_error"
       }
     ]
+
   interpolated_error:
     match: "(?<!\\\\)[#!]\\{(?=[^}]*$)"
     name: "invalid.illegal.tag.pug"
+
   interpolated_value:
     begin: "(?<!\\\\)[#!]\\{(?=.*?\\})"
     end: "\\}"
@@ -868,6 +878,7 @@ repository:
         include: "source.embedded.js"
       }
     ]
+
   js_braces:
     begin: "\\{"
     end: "\\}"
@@ -879,6 +890,7 @@ repository:
         include: "source.embedded.js"
       }
     ]
+
   js_brackets:
     begin: "\\["
     end: "\\]"
@@ -890,6 +902,7 @@ repository:
         include: "source.embedded.js"
       }
     ]
+
   js_parens:
     begin: "\\("
     end: "\\)"
@@ -901,6 +914,7 @@ repository:
         include: "source.embedded.js"
       }
     ]
+
   mixin_call:
     begin: "((?:mixin\\s+)|\\+)([\\w-]+)"
     beginCaptures:
@@ -936,6 +950,7 @@ repository:
         include: "#tag_attributes"
       }
     ]
+
   mixin_definition:
     captures:
       "1":
@@ -949,6 +964,7 @@ repository:
       "5":
         name: "punctuation.definition.parameters.begin.js"
     match: "(mixin\\s+)([\\w-]+)(?:(\\()\\s*((?:[a-zA-Z_]\\w*\\s*)(?:,\\s*[a-zA-Z_]\\w*\\s*)*)(\\)))?$"
+
   printed_expression:
     begin: "(!?\\=)\\s*"
     captures:
@@ -964,6 +980,7 @@ repository:
         include: "source.js"
       }
     ]
+
   string:
     begin: "(['\"])"
     end: "(?<!\\\\)\\1"
@@ -980,11 +997,13 @@ repository:
         include: "#interpolated_error"
       }
     ]
+
   tag_attribute_name:
     captures:
       "1":
         name: "entity.other.attribute-name.tag.pug"
     match: "([^\\s(),=/!]+)\\s*"
+
   tag_attribute_name_paren:
     begin: "\\(\\s*"
     end: "\\)"
@@ -997,6 +1016,7 @@ repository:
         include: "#tag_attribute_name"
       }
     ]
+
   tag_attributes:
     begin: "(\\(\\s*)"
     captures:
@@ -1060,15 +1080,18 @@ repository:
         ]
       }
     ]
+
   tag_classes:
     captures:
       "1":
         name: "invalid.illegal.tag.pug"
     match: "\\.([^\\w-])?[\\w-]*"
     name: "constant.language.js"
+
   tag_id:
     match: "#[\\w-]+"
     name: "entity.other.attribute-name.id.pug"
+
   tag_mixin_attributes:
     begin: "(&attributes\\()"
     captures:
@@ -1085,6 +1108,7 @@ repository:
         include: "source.embedded.js"
       }
     ]
+
   tag_name:
     begin: "([#!]\\{(?=.*?\\}))|(\\w(([\\w:-]+[\\w-])|([\\w-]*)))"
     end: "(\\G(?<!\\5[^\\w-]))|\\}|$"
@@ -1105,6 +1129,7 @@ repository:
         ]
       }
     ]
+
   tag_text:
     begin: "(?=.)"
     end: "$"
@@ -1125,6 +1150,7 @@ repository:
         include: "#interpolated_error"
       }
     ]
+
   unbuffered_code:
     begin: "(-|(([a-zA-Z0-9_]+)\\s+=))"
     beginCaptures:
@@ -1141,6 +1167,7 @@ repository:
         include: "source.js"
       }
     ]
+
   unbuffered_code_block:
     begin: "^(\\s*)-(\r|\n)"
     comment: "Unbuffered code block."
@@ -1151,4 +1178,3 @@ repository:
         include: "source.js"
       }
     ]
-scopeName: "source.pug"
