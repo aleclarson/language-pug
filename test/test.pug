@@ -55,8 +55,8 @@ html
     .test mixin attributes new syntax
       +another(abc=123, bcd='lol')
 
-    .98349 class name omly numbers
-    ._[invalid character in class name should result in it and text following be considered text
+    .123abc class name start with number
+    ._ [invalid character in class name should result in it and text following be considered text
 
     //  some html comment
       p.
@@ -73,10 +73,9 @@ html
 
     pre
       em this is inside 'em' tag <br/>
-
-      [this is rendered as standalone text
-      ##this too
-      "this too"
+      | [this is rendered as standalone text
+      | ##this too
+      | "this too"
 
     div(style="background-color: #eef") some examples of dot text blocks bellow:
 
