@@ -78,7 +78,7 @@ patterns: [
         ]
       }
       {
-        include: "source.embedded.js"
+        include: "source.js"
       }
     ]
   }
@@ -602,7 +602,7 @@ repository:
             include: "#case_when_paren"
           }
           {
-            include: "source.embedded.js"
+            include: "source.js"
           }
         ]
       }
@@ -631,7 +631,7 @@ repository:
         name: "invalid.illegal.name.tag.pug"
       }
       {
-        include: "source.embedded.js"
+        include: "source.js"
       }
     ]
 
