@@ -1024,17 +1024,6 @@ repository:
       }
     ]
 
-  tag_classes:
-    captures:
-      "1":
-        name: "invalid.illegal.tag.pug"
-    match: "\\.([^\\w-])?[\\w-]*"
-    name: "constant.language.js"
-
-  tag_id:
-    match: "#[\\w-]+"
-    name: "entity.other.attribute-name.id.pug"
-
   tag_mixin_attributes:
     begin: "&attributes(\\()"
     captures:
@@ -1075,6 +1064,16 @@ repository:
         ]
       }
     ]
+
+  tag_id:
+    name: "entity.tag.id.pug"
+    match: "#[\\w-]+"
+
+  tag_classes:
+    name: "entity.tag.class.pug"
+    match: "\\.([^\\w-])?[\\w-]*"
+    captures:
+      "1": name: "invalid.illegal.tag.pug"
 
   tag_text:
     begin: "(?=.)"
