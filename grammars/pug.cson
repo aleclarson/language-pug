@@ -596,7 +596,7 @@ repository:
       {
         begin: "\\G(?!:)"
         end: "(?=:\\s+)|$"
-        name: "js.embedded.control.flow.pug"
+        name: "js.control.flow.pug"
         patterns: [
           {
             include: "#case_when_paren"
@@ -863,7 +863,7 @@ repository:
         name: "invalid.illegal.tag.pug"
       }
       {
-        include: "source.embedded.js"
+        include: "source.js"
       }
     ]
 
@@ -875,7 +875,7 @@ repository:
         include: "#js_braces"
       }
       {
-        include: "source.embedded.js"
+        include: "source.js"
       }
     ]
 
@@ -887,7 +887,7 @@ repository:
         include: "#js_brackets"
       }
       {
-        include: "source.embedded.js"
+        include: "source.js"
       }
     ]
 
@@ -899,7 +899,7 @@ repository:
         include: "#js_parens"
       }
       {
-        include: "source.embedded.js"
+        include: "source.js"
       }
     ]
 
@@ -930,7 +930,7 @@ repository:
             match: "([^\\s(),=/]+)\\s*=\\s*"
           }
           {
-            include: "source.embedded.js"
+            include: "source.js"
           }
         ]
       }
@@ -1037,7 +1037,7 @@ repository:
             include: "#js_braces"
           }
           {
-            include: "source.embedded.js"
+            include: "source.js"
           }
         ]
       }
@@ -1059,7 +1059,7 @@ repository:
             include: "#js_braces"
           }
           {
-            include: "source.embedded.js"
+            include: "source.js"
           }
         ]
       }
@@ -1089,7 +1089,7 @@ repository:
         name: "storage.type.keyword.pug"
       }
       {
-        include: "source.embedded.js"
+        include: "source.js"
       }
     ]
 
@@ -1108,7 +1108,7 @@ repository:
             name: "invalid.illegal.tag.pug"
           }
           {
-            include: "source.embedded.js"
+            include: "source.js"
           }
         ]
       }
