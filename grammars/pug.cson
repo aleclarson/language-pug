@@ -1017,9 +1017,8 @@ repository:
     begin: "(\\(\\s*)"
     captures:
       "1":
-        name: "constant.attribute.bracket.round.tag.pug"
+        name: "constant.bracket.round.pug"
     end: "(\\))"
-    name: "source.script.jade"
     patterns: [
       {
         include: "#tag_attribute_name_paren"
@@ -1092,20 +1091,13 @@ repository:
     name: "entity.other.attribute-name.id.pug"
 
   tag_mixin_attributes:
-    begin: "(&attributes\\()"
+    begin: "&attributes(\\()"
     captures:
-      "1":
-        name: "entity.name.function.pug"
+      "1": name: "constant.bracket.round.tag.pug"
     end: "(\\))"
-    name: "source.script.jade"
+    name: "attributes.function.pug"
     patterns: [
-      {
-        match: "attributes(?=\\))"
-        name: "storage.type.keyword.pug"
-      }
-      {
-        include: "source.js"
-      }
+      {include: "source.js"}
       {include: "#js_variable"}
     ]
 
