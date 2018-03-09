@@ -479,7 +479,10 @@ patterns: [
         include: "#flow_control"
       }
       {
-        include: "#case_conds"
+        include: "#case_when"
+      }
+      {
+        include: "#case_default"
       }
       {
         begin: "\\|"
@@ -584,56 +587,18 @@ repository:
     match: "(extends|include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)$"
     name: "meta.first-class.pug"
 
-  case_conds:
-    begin: "(default|when)((\\s+|(?=:))|$)"
+  case_when:
+    match: "(when)\\s+([^:]+)(:\\s+|$)"
     captures:
-      "1":
-        name: "storage.type.function.pug"
-    comment: "pug case conditionals."
-    end: "$"
-    name: "meta.control.flow.pug"
-    patterns: [
-      {
-        begin: "\\G(?!:)"
-        end: "(?=:\\s+)|$"
-        name: "js.control.flow.pug"
-        patterns: [
-          {
-            include: "#case_when_paren"
-          }
-          {
-            include: "source.js"
-          }
-        ]
-      }
-      {
-        begin: ":\\s+"
-        end: "$"
-        name: "tag.case.control.flow.pug"
-        patterns: [
-          {
-            include: "#complete_tag"
-          }
-        ]
-      }
-    ]
+      "1": name: "keyword.control.case"
+      "2": patterns: [include: "source.js"]
+      "3": name: "meta.constant.punctuation"
 
-  case_when_paren:
-    begin: "\\("
-    end: "\\)"
-    name: "js.when.control.flow.pug"
-    patterns: [
-      {
-        include: "#case_when_paren"
-      }
-      {
-        match: ":"
-        name: "invalid.illegal.name.tag.pug"
-      }
-      {
-        include: "source.js"
-      }
-    ]
+  case_default:
+    match: "(default)(:\\s+|$)"
+    captures:
+      "1": name: "keyword.control.default"
+      "2": name: "meta.constant.punctuation"
 
   complete_tag:
     begin: "(?=[\\w.#])|(:\\s*)"
