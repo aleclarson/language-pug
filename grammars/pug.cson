@@ -547,6 +547,9 @@ patterns: [
         ]
       }
       {
+        include: "#embedded_html"
+      }
+      {
         include: "#complete_tag"
       }
     ]
