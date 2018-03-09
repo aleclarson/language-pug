@@ -950,18 +950,19 @@ repository:
     ]
 
   mixin_definition:
+    name: "entity.mixin"
+    match: "(mixin\\s+)([\\w-]+)(?:(\\()\\s*((?:[a-zA-Z_]\\w*\\s*)(?:,\\s*[a-zA-Z_]\\w*\\s*)*)(\\)))?$"
     captures:
       "1":
         name: "storage.type.function.pug"
       "2":
-        name: "source.script.jade entity.name.function.pug"
+        name: "entity.function.name.pug"
       "3":
-        name: "punctuation.definition.parameters.begin.js"
+        name: "constant.bracket.round.pug"
       "4":
-        name: "variable.parameter.function.js"
+        name: "function.parameter"
       "5":
-        name: "punctuation.definition.parameters.begin.js"
-    match: "(mixin\\s+)([\\w-]+)(?:(\\()\\s*((?:[a-zA-Z_]\\w*\\s*)(?:,\\s*[a-zA-Z_]\\w*\\s*)*)(\\)))?$"
+        name: "constant.bracket.round.pug"
 
   printed_expression:
     match: "(!?\\=)\\s*(.*)$"
