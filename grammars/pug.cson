@@ -593,7 +593,7 @@ repository:
     match: "(when)\\s+([^:]+)(:\\s+|$)"
     captures:
       "1": name: "keyword.control.case"
-      "2": patterns: [include: "source.js"]
+      "2": patterns: [include: "source.moon"]
       "3": name: "meta.constant.punctuation"
 
   case_default:
@@ -704,11 +704,11 @@ repository:
         name: "pug.meta.keyword.control"
       "2":
         patterns: [
-          {include: "source.js"}
-          {include: "#js_variable"}
+          {include: "source.moon"}
+          {include: "#moon_variable"}
         ]
 
-  js_variable:
+  moon_variable:
     match: "[$_a-zA-Z][$_a-zA-Z0-9]*"
     name: "variable.js"
 
@@ -815,45 +815,8 @@ repository:
         match: "{"
         name: "invalid.illegal.tag.pug"
       }
-      {
-        include: "source.js"
-      }
-    ]
-
-  js_braces:
-    begin: "\\{"
-    end: "\\}"
-    patterns: [
-      {
-        include: "#js_braces"
-      }
-      {
-        include: "source.js"
-      }
-    ]
-
-  js_brackets:
-    begin: "\\["
-    end: "\\]"
-    patterns: [
-      {
-        include: "#js_brackets"
-      }
-      {
-        include: "source.js"
-      }
-    ]
-
-  js_parens:
-    begin: "\\("
-    end: "\\)"
-    patterns: [
-      {
-        include: "#js_parens"
-      }
-      {
-        include: "source.js"
-      }
+      {include: "source.moon"}
+      {include: "#moon_variable"}
     ]
 
   mixin_call:
@@ -871,23 +834,14 @@ repository:
           "0": name: "constant.bracket.round.pug"
         end: "\\)"
         patterns: [
-          {
-            include: "#js_parens"
-          }
-          {
-            include: "#string"
-          }
+          {include: "#string"}
           {
             match: "([^\\s(),=/]+)\\s*=\\s*"
             captures:
               "1": name: "entity.other.attribute-name.tag.pug"
           }
-          {
-            include: "source.js"
-          }
-          {
-            include: "#js_variable"
-          }
+          {include: "source.moon"}
+          {include: "#moon_variable"}
         ]
       }
       {
@@ -916,12 +870,17 @@ repository:
       "1":
         name: "meta.operator.constant.expr"
       "2":
-        name: "js"
         patterns: [
-          {include: "#js_brackets"}
-          {include: "source.js"}
-          {include: "js_variable"}
+          {include: "source.moon"}
+          {include: "#moon_variable"}
         ]
+
+  expression:
+    patterns: [
+      {include: "#string"}
+      {include: "source.moon#numeric"}
+      {include: "#moon_variable"}
+    ]
 
   string:
     begin: "(['\"])"
@@ -980,24 +939,7 @@ repository:
         end: "$|(?=,|(?:\\s+[^!%&*-+~|<>:?/])|\\))"
         name: "attribute_value"
         patterns: [
-          {
-            include: "#string"
-          }
-          {
-            include: "#js_parens"
-          }
-          {
-            include: "#js_brackets"
-          }
-          {
-            include: "#js_braces"
-          }
-          {
-            include: "source.js"
-          }
-          {
-            include: "#js_variable"
-          }
+          {include: "#expression"}
         ]
       }
       {
@@ -1005,21 +947,7 @@ repository:
         end: "$|(?=,|(?:\\s+[^!%&*-+~|<>:?/])|\\))"
         name: "attribute_value2"
         patterns: [
-          {
-            include: "#string"
-          }
-          {
-            include: "#js_parens"
-          }
-          {
-            include: "#js_brackets"
-          }
-          {
-            include: "#js_braces"
-          }
-          {
-            include: "source.js"
-          }
+          {include: "#expression"}
         ]
       }
     ]
@@ -1031,8 +959,8 @@ repository:
     end: "(\\))"
     name: "attributes.function.pug"
     patterns: [
-      {include: "source.js"}
-      {include: "#js_variable"}
+      {include: "source.moon"}
+      {include: "#moon_variable"}
     ]
 
   tag_head:
@@ -1055,8 +983,8 @@ repository:
         endCaptures:
           "0": name: "punctuation.end"
         patterns: [
-          {include: "source.js"}
-          {include: "#js_variable"}
+          {include: "source.moon"}
+          {include: "#moon_variable"}
         ]
       }
       {
@@ -1103,9 +1031,8 @@ repository:
       "0": name: "meta.operator.constant"
     end: "(?=\\])|$"
     patterns: [
-      {include: "#js_brackets"}
-      {include: "source.js"}
-      {include: "#js_variable"}
+      {include: "source.moon"}
+      {include: "#moon_variable"}
     ]
 
   unbuffered_code_block:
@@ -1113,8 +1040,6 @@ repository:
     begin: "^(\\s*)-(\r|\n)"
     end: "^(?!(\\1\\s)|\\s*$)"
     patterns: [
-      {
-        include: "source.js"
-      }
-      {include: "#js_variable"}
+      {include: "source.moon"}
+      {include: "#moon_variable"}
     ]
