@@ -1045,23 +1045,23 @@ repository:
     ]
 
   tag_name:
-    begin: "([#!]\\{(?=.*?\\}))|(\\w(([\\w:-]+[\\w-])|([\\w-]*)))"
-    end: "(\\G(?<!\\5[^\\w-]))|\\}|$"
-    name: "entity.name.tag.pug"
     patterns: [
       {
-        begin: "\\G(?<=\\{)"
-        end: "(?=\\})"
-        name: "entity.name.tag.pug"
+        name: "entity.tag.name.interpolated.pug"
+        begin: "#\\{"
+        end: "\\}"
+        beginCaptures:
+          "0": name: "punctuation.begin"
+        endCaptures:
+          "0": name: "punctuation.end"
         patterns: [
-          {
-            match: "{"
-            name: "invalid.illegal.tag.pug"
-          }
-          {
-            include: "source.js"
-          }
+          {include: "source.js"}
+          {include: "#js_variable"}
         ]
+      }
+      {
+        name: "entity.tag.name.pug"
+        match: "(\\w(?:[\\w:-]+[\\w-]|[\\w-]*))"
       }
     ]
 
