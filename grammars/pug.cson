@@ -17,11 +17,11 @@ patterns: [
     include: "#unbuffered_code_block"
   }
   {
+    comment: "Script tag with JavaScript code."
     begin: "^(\\s*)(script)(?=[.#(\\s])((?![^\\n]*type=)|(?=[^\\n]*type=['\"](text|application)/javascript['\"]))"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
-    comment: "Script tag with JavaScript code."
     end: "^(?!(\\1\\s)|\\s*$)"
     patterns: [
       {
@@ -82,11 +82,11 @@ patterns: [
     ]
   }
   {
+    comment: "Script tag with CoffeeScript code."
     begin: "^(\\s*)(script)(?=[.#(\\s])(?=[^\\n]*type=['\"](?:(text|application)/)?(?:x-)?coffee(?:-script)?['\"])"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
-    comment: "Script tag with CoffeeScript code."
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "source.script.pug"
     patterns: [
@@ -116,11 +116,11 @@ patterns: [
     ]
   }
   {
+    comment: "Style tag with CSS code."
     begin: "^(\\s*)(style)(?=[.#(\\s])((?![^\\n]*type=)|(?=[^\\n]*type=['\"](?:text/)?css['\"]))"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
-    comment: "Style tag with CSS code."
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "source.script.pug"
     patterns: [
@@ -150,11 +150,11 @@ patterns: [
     ]
   }
   {
+    comment: "Style tag with SCSS code."
     begin: "^(\\s*)(style)(?=[.#(\\s])(?=[^\\n]*type=['\"](?:text/)?(?:x-)?scss['\"])"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
-    comment: "Style tag with SCSS code."
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "source.script.pug"
     patterns: [
@@ -187,11 +187,11 @@ patterns: [
     ]
   }
   {
+    comment: "Style tag with SASS code."
     begin: "^(\\s*)(style)(?=[.#(\\s])(?=[^\\n]*type=['\"](?:text/)?(?:x-)?sass['\"])"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
-    comment: "Style tag with SASS code."
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "source.script.pug"
     patterns: [
@@ -224,11 +224,11 @@ patterns: [
     ]
   }
   {
+    comment: "Style tag with Less code."
     begin: "^(\\s*)(style)(?=[.#(\\s])(?=[^\\n]*type=['\"](?:text/)?(?:x-)?less['\"])"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
-    comment: "Style tag with Less code."
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "source.script.pug"
     patterns: [
@@ -261,11 +261,11 @@ patterns: [
     ]
   }
   {
+    comment: "Style tag with Stylus code."
     begin: "^(\\s*)(style)(?=[.#(\\s])(?=[^\\n]*type=['\"](?:text/)?(?:x-)?stylus['\"])"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
-    comment: "Style tag with Stylus code."
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "source.script.pug"
     patterns: [
@@ -371,11 +371,11 @@ patterns: [
     ]
   }
   {
+    comment: "Generic pug filter."
     begin: "^(\\s*)((:(?=.))|(:$))"
     beginCaptures:
       "4":
         name: "invalid.illegal.empty.generic.filter.pug"
-    comment: "Generic pug filter."
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "text.generic.filter.pug"
     patterns: [
@@ -404,6 +404,7 @@ patterns: [
     ]
   }
   {
+    comment: "Generated from dot_block_tag.py"
     begin: "^(\\s*)(?=[\\w.#].*?\\.$)(?=(?:(?:(?:(?:(?:#[\\w-]+)|(?:\\.[\\w-]+))|(?:(?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))(?:(?:#[\\w-]+)|(?:\\.[\\w-]+)|(?:\\((?:[^()\\'\\\"]*(?:(?:\\'(?:[^\\']|(?:(?<!\\\\)\\\\\\'))*\\')|(?:\\\"(?:[^\\\"]|(?:(?<!\\\\)\\\\\\\"))*\\\")))*[^()]*\\))*)*)(?:(?:(?::\\s+)|(?<=\\)))(?:(?:(?:(?:#[\\w-]+)|(?:\\.[\\w-]+))|(?:(?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))(?:(?:#[\\w-]+)|(?:\\.[\\w-]+)|(?:\\((?:[^()\\'\\\"]*(?:(?:\\'(?:[^\\']|(?:(?<!\\\\)\\\\\\'))*\\')|(?:\\\"(?:[^\\\"]|(?:(?<!\\\\)\\\\\\\"))*\\\")))*[^()]*\\))*)*))*)\\.$)(?:(?:(#[\\w-]+)|(\\.[\\w-]+))|((?:[#!]\\{[^}]*\\})|(?:\\w(?:(?:[\\w:-]+[\\w-])|(?:[\\w-]*)))))"
     beginCaptures:
       "2":
@@ -412,7 +413,6 @@ patterns: [
         name: "constant.language.js"
       "4":
         name: "source.script.pug entity.name.tag.pug"
-    comment: "Generated from dot_block_tag.py"
     end: "^(?!(\\1\\s)|\\s*$)"
     patterns: [
       {
@@ -446,8 +446,8 @@ patterns: [
     ]
   }
   {
-    begin: "^\\s*"
     comment: "All constructs that generally span a single line starting with any number of white-spaces."
+    begin: "^\\s*"
     end: "$"
     patterns: [
       {
@@ -558,34 +558,34 @@ patterns: [
 repository:
 
   unbuffered_comments:
-    begin: "^(\\s*)//-"
     comment: "Unbuffered (pug-only) comments."
+    begin: "^(\\s*)//-"
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "comment.unbuffered.block.pug"
 
   buffered_comments:
-    begin: "^(\\s*)//"
     comment: "Buffered (html) comments."
+    begin: "^(\\s*)//"
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "string.comment.buffered.block.pug"
     patterns: [
       {
+        comment: "Buffered comments inside buffered comments will generate invalid html."
         captures:
           "1":
             name: "invalid.illegal.comment.comment.block.pug"
-        comment: "Buffered comments inside buffered comments will generate invalid html."
         match: "^\\s*(//)(?!-)"
         name: "string.comment.buffered.block.pug"
       }
     ]
 
   blocks_and_includes:
+    comment: "Template blocks and includes."
     captures:
       "1":
         name: "storage.type.import.include.pug"
       "4":
         name: "variable.control.import.include.pug"
-    comment: "Template blocks and includes."
     match: "(extends|include|yield|append|prepend|block( (append|prepend))?)\\s+(.*)$"
     name: "meta.first-class.pug"
 
