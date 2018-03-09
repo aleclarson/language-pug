@@ -745,7 +745,14 @@ repository:
       "1":
         name: "pug.meta.keyword.control.js"
       "2":
-        patterns: [include: "source.js"]
+        patterns: [
+          {include: "source.js"}
+          {include: "#js_variable"}
+        ]
+
+  js_variable:
+    match: "[$_a-zA-Z][$_a-zA-Z0-9]*"
+    name: "variable.js"
 
   html_entity:
     patterns: [
@@ -932,6 +939,9 @@ repository:
           {
             include: "source.js"
           }
+          {
+            include: "#js_variable"
+          }
         ]
       }
       {
@@ -963,6 +973,7 @@ repository:
         patterns: [
           {include: "#js_brackets"}
           {include: "source.js"}
+          {include: "js_variable"}
         ]
 
   string:
@@ -1039,6 +1050,9 @@ repository:
           {
             include: "source.js"
           }
+          {
+            include: "#js_variable"
+          }
         ]
       }
       {
@@ -1091,6 +1105,7 @@ repository:
       {
         include: "source.js"
       }
+      {include: "#js_variable"}
     ]
 
   tag_name:
@@ -1144,6 +1159,7 @@ repository:
     patterns: [
       {include: "#js_brackets"}
       {include: "source.js"}
+      {include: "#js_variable"}
     ]
 
   unbuffered_code_block:
@@ -1154,4 +1170,5 @@ repository:
       {
         include: "source.js"
       }
+      {include: "#js_variable"}
     ]
