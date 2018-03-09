@@ -1136,17 +1136,14 @@ repository:
     ]
 
   unbuffered_code:
-    begin: "-"
     comment: "Unbuffered code, one-liner"
+    begin: "-"
+    beginCaptures:
+      "0": name: "meta.operator.constant"
     end: "(?=\\])|$"
-    name: "source.embedded.js"
     patterns: [
-      {
-        include: "#js_brackets"
-      }
-      {
-        include: "source.js"
-      }
+      {include: "#js_brackets"}
+      {include: "source.js"}
     ]
 
   unbuffered_code_block:
