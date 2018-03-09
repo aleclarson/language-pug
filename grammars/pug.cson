@@ -701,7 +701,7 @@ repository:
     match: "(for|if|else if|else|each|until|while|unless|case)\\s+(.*)"
     captures:
       "1":
-        name: "pug.meta.keyword.control.js"
+        name: "pug.meta.keyword.control"
       "2":
         patterns: [
           {include: "source.js"}
