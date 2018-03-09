@@ -954,20 +954,16 @@ repository:
     match: "(mixin\\s+)([\\w-]+)(?:(\\()\\s*((?:[a-zA-Z_]\\w*\\s*)(?:,\\s*[a-zA-Z_]\\w*\\s*)*)(\\)))?$"
 
   printed_expression:
-    begin: "(!?\\=)\\s*"
+    match: "(!?\\=)\\s*(.*)$"
     captures:
       "1":
         name: "constant"
-    end: "(?=\\])|$"
-    name: "source.embedded.js"
-    patterns: [
-      {
-        include: "#js_brackets"
-      }
-      {
-        include: "source.js"
-      }
-    ]
+      "2":
+        name: "js"
+        patterns: [
+          {include: "#js_brackets"}
+          {include: "source.js"}
+        ]
 
   string:
     begin: "(['\"])"
