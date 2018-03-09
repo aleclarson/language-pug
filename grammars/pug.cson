@@ -914,7 +914,7 @@ repository:
     match: "(!?\\=)\\s*(.*)$"
     captures:
       "1":
-        name: "constant"
+        name: "meta.operator.constant.expr"
       "2":
         name: "js"
         patterns: [
