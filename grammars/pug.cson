@@ -1005,7 +1005,7 @@ repository:
     begin: "(\\(\\s*)"
     captures:
       "1":
-        name: "constant.name.attribute.tag.pug"
+        name: "constant.attribute.bracket.round.tag.pug"
     end: "(\\))"
     name: "source.script.jade"
     patterns: [
