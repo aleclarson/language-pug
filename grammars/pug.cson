@@ -960,11 +960,10 @@ repository:
     ]
 
   tag_attributes:
-    begin: "(\\(\\s*)"
+    begin: "\\(\\s*"
     captures:
-      "1":
-        name: "constant.bracket.round.pug"
-    end: "(\\))"
+      "0": name: "constant.bracket.round.pug"
+    end: "\\)"
     patterns: [
       {
         include: "#tag_attribute_name_paren"
