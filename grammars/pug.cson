@@ -1147,10 +1147,9 @@ repository:
     ]
 
   unbuffered_code_block:
-    begin: "^(\\s*)-(\r|\n)"
     comment: "Unbuffered code, multi-line"
+    begin: "^(\\s*)-(\r|\n)"
     end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.embedded.js"
     patterns: [
       {
         include: "source.js"
