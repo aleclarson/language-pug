@@ -604,7 +604,11 @@ repository:
 
   complete_tag:
     begin: "(?=[\\w.#])|(:\\s*)"
+    beginCaptures:
+      "0": name: "meta.constant.operator"
     end: "(\\.?$)|(?=:.)"
+    endCaptures:
+      "0": name: "meta.constant.operator"
     patterns: [
       {
         include: "#blocks_and_includes"
