@@ -627,19 +627,7 @@ repository:
         name: "invalid.illegal.name.tag.pug"
       }
       {
-        include: "#tag_name"
-      }
-      {
-        include: "#tag_id"
-      }
-      {
-        include: "#tag_classes"
-      }
-      {
-        include: "#tag_attributes"
-      }
-      {
-        include: "#tag_mixin_attributes"
+        include: "#tag_head"
       }
       {
         captures:
@@ -759,19 +747,7 @@ repository:
         name: "tag.inline.pug"
         patterns: [
           {
-            include: "#tag_name"
-          }
-          {
-            include: "#tag_id"
-          }
-          {
-            include: "#tag_classes"
-          }
-          {
-            include: "#tag_attributes"
-          }
-          {
-            include: "#tag_mixin_attributes"
+            include: "#tag_head"
           }
           {
             include: "#inline_pug"
@@ -1070,6 +1046,15 @@ repository:
     patterns: [
       {include: "source.js"}
       {include: "#js_variable"}
+    ]
+
+  tag_head:
+    patterns: [
+      {include: "#tag_name"}
+      {include: "#tag_id"}
+      {include: "#tag_classes"}
+      {include: "#tag_attributes"}
+      {include: "#tag_mixin_attributes"}
     ]
 
   tag_name:
