@@ -739,25 +739,13 @@ repository:
     ]
 
   flow_control:
-    begin: "(for|if|else if|else|each|until|while|unless|case)(\\s+|$)"
+    comment: "pug flow control"
+    match: "(for|if|else if|else|each|until|while|unless|case)\\s+(.*)"
     captures:
       "1":
-        name: "storage.type.function.pug"
-    comment: "pug control flow."
-    end: "$"
-    name: "meta.control.flow.pug"
-    patterns: [
-      {
-        begin: ""
-        end: "$"
-        name: "js.embedded.control.flow.pug"
-        patterns: [
-          {
-            include: "source.embedded.js"
-          }
-        ]
-      }
-    ]
+        name: "pug.meta.keyword.control.js"
+      "2":
+        patterns: [include: "source.js"]
 
   html_entity:
     patterns: [
