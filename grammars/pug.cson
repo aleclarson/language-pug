@@ -11,7 +11,7 @@ patterns: [
   {
     comment: "Doctype declaration."
     match: "^(!!!|doctype)(\\s*[a-zA-Z0-9-_]+)?"
-    name: "comment.other.doctype.jade"
+    name: "comment.other.doctype.pug"
   }
   {
     include: "#unbuffered_code_block"
@@ -23,7 +23,6 @@ patterns: [
         name: "entity.name.tag.script.pug"
     comment: "Script tag with JavaScript code."
     end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.script.jade"
     patterns: [
       {
         begin: "^(\\s*):(babel)(?=\\(|$)$"
@@ -89,7 +88,7 @@ patterns: [
         name: "entity.name.tag.script.pug"
     comment: "Script tag with CoffeeScript code."
     end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.script.jade"
+    name: "source.script.pug"
     patterns: [
       {
         begin: "\\G(?=\\()"
@@ -123,7 +122,7 @@ patterns: [
         name: "entity.name.tag.script.pug"
     comment: "Style tag with CSS code."
     end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.script.jade"
+    name: "source.script.pug"
     patterns: [
       {
         begin: "\\G(?=\\()"
@@ -157,7 +156,7 @@ patterns: [
         name: "entity.name.tag.script.pug"
     comment: "Style tag with SCSS code."
     end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.script.jade"
+    name: "source.script.pug"
     patterns: [
       {
         begin: "\\G(?=\\()"
@@ -194,7 +193,7 @@ patterns: [
         name: "entity.name.tag.script.pug"
     comment: "Style tag with SASS code."
     end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.script.jade"
+    name: "source.script.pug"
     patterns: [
       {
         begin: "\\G(?=\\()"
@@ -231,7 +230,7 @@ patterns: [
         name: "entity.name.tag.script.pug"
     comment: "Style tag with Less code."
     end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.script.jade"
+    name: "source.script.pug"
     patterns: [
       {
         begin: "\\G(?=\\()"
@@ -268,7 +267,7 @@ patterns: [
         name: "entity.name.tag.script.pug"
     comment: "Style tag with Stylus code."
     end: "^(?!(\\1\\s)|\\s*$)"
-    name: "source.script.jade"
+    name: "source.script.pug"
     patterns: [
       {
         begin: "\\G(?=\\()"
