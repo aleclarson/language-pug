@@ -911,18 +911,19 @@ repository:
     ]
 
   mixin_call:
-    begin: "((?:mixin\\s+)|\\+)([\\w-]+)"
+    name: "meta.mixin-call.pug"
+    begin: "(\\+)([\\w-]+)"
     beginCaptures:
-      "1":
-        name: "storage.type.function.pug"
-      "2":
-        name: "source.script.jade entity.name.function.pug"
+      "1": name: "meta.operator.constant"
+      "2": name: "entity.function.name.pug"
     end: "(?!\\()|$"
     patterns: [
       {
-        begin: "(?<!\\))\\("
+        name: "meta.arguments.pug"
+        begin: "\\("
+        captures:
+          "0": name: "constant.bracket.round.pug"
         end: "\\)"
-        name: "args.mixin.pug"
         patterns: [
           {
             include: "#js_parens"
@@ -931,10 +932,9 @@ repository:
             include: "#string"
           }
           {
-            captures:
-              "1":
-                name: "source.script.jade entity.other.attribute-name.tag.pug"
             match: "([^\\s(),=/]+)\\s*=\\s*"
+            captures:
+              "1": name: "entity.other.attribute-name.tag.pug"
           }
           {
             include: "source.js"
