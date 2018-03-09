@@ -1152,11 +1152,8 @@ repository:
     ]
 
   unbuffered_code:
-    begin: "(-|(([a-zA-Z0-9_]+)\\s+=))"
-    beginCaptures:
-      "3":
-        name: "variable.parameter.javascript.embedded.pug"
-    comment: "name = function() {}"
+    begin: "-"
+    comment: "Unbuffered code, one-liner"
     end: "(?=\\])|$"
     name: "source.embedded.js"
     patterns: [
@@ -1170,7 +1167,7 @@ repository:
 
   unbuffered_code_block:
     begin: "^(\\s*)-(\r|\n)"
-    comment: "Unbuffered code block."
+    comment: "Unbuffered code, multi-line"
     end: "^(?!(\\1\\s)|\\s*$)"
     name: "source.embedded.js"
     patterns: [
