@@ -705,12 +705,8 @@ repository:
       "2":
         patterns: [
           {include: "source.moon"}
-          {include: "#moon_variable"}
+          {include: "source.moon#variable_name"}
         ]
-
-  moon_variable:
-    match: "[$_a-zA-Z][$_a-zA-Z0-9]*"
-    name: "variable.js"
 
   html_entity:
     patterns: [
@@ -816,7 +812,7 @@ repository:
         name: "invalid.illegal.tag.pug"
       }
       {include: "source.moon"}
-      {include: "#moon_variable"}
+      {include: "source.moon#variable_name"}
     ]
 
   mixin_call:
@@ -841,7 +837,7 @@ repository:
               "1": name: "entity.other.attribute-name.tag.pug"
           }
           {include: "source.moon"}
-          {include: "#moon_variable"}
+          {include: "source.moon#variable_name"}
         ]
       }
       {
@@ -872,14 +868,14 @@ repository:
       "2":
         patterns: [
           {include: "source.moon"}
-          {include: "#moon_variable"}
+          {include: "source.moon#variable_name"}
         ]
 
   expression:
     patterns: [
       {include: "#string"}
       {include: "source.moon#numeric"}
-      {include: "#moon_variable"}
+      {include: "source.moon#variable_name"}
     ]
 
   string:
@@ -960,7 +956,7 @@ repository:
     name: "attributes.function.pug"
     patterns: [
       {include: "source.moon"}
-      {include: "#moon_variable"}
+      {include: "source.moon#variable_name"}
     ]
 
   tag_head:
@@ -984,7 +980,7 @@ repository:
           "0": name: "punctuation.end"
         patterns: [
           {include: "source.moon"}
-          {include: "#moon_variable"}
+          {include: "source.moon#variable_name"}
         ]
       }
       {
@@ -1032,7 +1028,7 @@ repository:
     end: "(?=\\])|$"
     patterns: [
       {include: "source.moon"}
-      {include: "#moon_variable"}
+      {include: "source.moon#variable_name"}
     ]
 
   unbuffered_code_block:
@@ -1041,5 +1037,5 @@ repository:
     end: "^(?!(\\1\\s)|\\s*$)"
     patterns: [
       {include: "source.moon"}
-      {include: "#moon_variable"}
+      {include: "source.moon#variable_name"}
     ]
