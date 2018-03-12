@@ -1026,7 +1026,9 @@ repository:
 
   unbuffered_code_block:
     comment: "Unbuffered code, multi-line"
-    begin: "^(\\s*)-(\r|\n)"
+    begin: "^(\\s*)(-)(?:\r|\n)"
+    beginCaptures:
+      "2": name: "meta.operator.constant"
     end: "^(?!(\\1\\s)|\\s*$)"
     patterns: [
       {include: "source.moon"}
