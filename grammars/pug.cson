@@ -704,8 +704,7 @@ repository:
         name: "pug.meta.keyword.control"
       "2":
         patterns: [
-          {include: "source.moon"}
-          {include: "source.moon#variable_name"}
+          {include: "source.moon#expression"}
         ]
 
   html_entity:
@@ -811,8 +810,7 @@ repository:
         match: "{"
         name: "invalid.illegal.tag.pug"
       }
-      {include: "source.moon"}
-      {include: "source.moon#variable_name"}
+      {include: "source.moon#expression"}
     ]
 
   mixin_call:
@@ -836,8 +834,7 @@ repository:
             captures:
               "1": name: "entity.other.attribute-name.tag.pug"
           }
-          {include: "source.moon"}
-          {include: "source.moon#variable_name"}
+          {include: "source.moon#expression"}
         ]
       }
       {
@@ -867,15 +864,12 @@ repository:
         name: "meta.operator.constant.expr"
       "2":
         patterns: [
-          {include: "source.moon"}
-          {include: "source.moon#variable_name"}
+          {include: "source.moon#expression"}
         ]
 
   expression:
     patterns: [
-      {include: "#string"}
-      {include: "source.moon#numeric"}
-      {include: "source.moon#variable_name"}
+      {include: "source.moon#expression"}
     ]
 
   string:
@@ -955,8 +949,7 @@ repository:
     end: "(\\))"
     name: "attributes.function.pug"
     patterns: [
-      {include: "source.moon"}
-      {include: "source.moon#variable_name"}
+      {include: "source.moon#expression"}
     ]
 
   tag_head:
