@@ -1021,7 +1021,6 @@ repository:
     end: "(?=\\])|$"
     patterns: [
       {include: "source.moon"}
-      {include: "source.moon#variable_name"}
     ]
 
   unbuffered_code_block:
@@ -1032,5 +1031,4 @@ repository:
     end: "^(?!(\\1\\s)|\\s*$)"
     patterns: [
       {include: "source.moon"}
-      {include: "source.moon#variable_name"}
     ]
