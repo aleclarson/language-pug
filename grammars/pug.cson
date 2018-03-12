@@ -18,7 +18,7 @@ patterns: [
   }
   {
     comment: "Script tag with JavaScript code."
-    begin: "^(\\s*)(script)(?=[.#(\\s])((?![^\\n]*type=)|(?=[^\\n]*type=['\"](text|application)/javascript['\"]))"
+    begin: "^(\\s*)(script)(?=[.#\\(\\s])((?![^\\n]*type=)|(?=[^\\n]*type=['\"](text|application)/javascript['\"]))"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
