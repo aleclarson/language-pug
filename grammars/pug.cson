@@ -925,17 +925,9 @@ repository:
         name: "invalid.illegal.tag.pug"
       }
       {
-        begin: "=\\s*"
-        end: "$|(?=,|(?:\\s+[^!%&*-+~|<>:?/])|\\))"
         name: "attribute_value"
-        patterns: [
-          {include: "#expression"}
-        ]
-      }
-      {
-        begin: "(?<=[%&*-+~|<>:?/])\\s+"
-        end: "$|(?=,|(?:\\s+[^!%&*-+~|<>:?/])|\\))"
-        name: "attribute_value2"
+        begin: "=\\s*"
+        end: "$|(?=\\s+[a-zA-Z\\$_]\\w*(\\.\\w+)*\\=)|(?=,|\\))"
         patterns: [
           {include: "#expression"}
         ]
