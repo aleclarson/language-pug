@@ -3,6 +3,10 @@ scopeName: "source.pug"
 fileTypes: ["pug", "jade"]
 patterns: [
   {
+    comment: "This fixes script/style tags for some reason..."
+    match: "\\s*$"
+  }
+  {
     include: "#unbuffered_comments"
   }
   {
@@ -83,7 +87,7 @@ patterns: [
   }
   {
     comment: "Script tag with CoffeeScript code."
-    begin: "^(\\s*)(script)(?=[.#(\\s])(?=[^\\n]*type=['\"](?:(text|application)/)?(?:x-)?coffee(?:-script)?['\"])"
+    begin: "^(\\s*)(script)(?=[.#(\\s])(?=[^\\n]*type=['\"](?:(text|application)/)?(?:x-)?coffee(?:-script)?['\"].*\\)\\.)"
     beginCaptures:
       "2":
         name: "entity.name.tag.script.pug"
@@ -451,12 +455,6 @@ patterns: [
     end: "$"
     patterns: [
       {
-        include: "#unbuffered_comments"
-      }
-      {
-        include: "#buffered_comments"
-      }
-      {
         include: "#unbuffered_code_block"
       }
       {
@@ -476,6 +474,9 @@ patterns: [
       }
       {
         include: "#flow_control"
+      }
+      {
+        include: "#iteration"
       }
       {
         include: "#case_when"
@@ -623,6 +624,9 @@ repository:
         include: "#flow_control"
       }
       {
+        include: "#iteration"
+      }
+      {
         match: "(?<=:)\\w.*$"
         name: "invalid.illegal.name.tag.pug"
       }
@@ -698,14 +702,46 @@ repository:
 
   flow_control:
     comment: "pug flow control"
-    match: "(for|if|else if|else|each|until|while|unless|case)\\s+(.*)"
+    match: "(if|else if|else|until|while|unless|case)\\s+(.*)"
     captures:
       "1":
         name: "pug.meta.keyword.control"
       "2":
         patterns: [
-          {include: "source.moon#expression"}
+          {include: "#expression"}
         ]
+
+  iteration:
+    comment: "pug iteration"
+    match: "(for|each) (.+) (.+)"
+    captures:
+      "1":
+        name: "pug.meta.keyword.control"
+      "2":
+        patterns: [
+          {include: "#iteration_vars"}
+        ]
+      "3":
+        patterns: [
+          {include: "#expression"}
+        ]
+
+  iteration_vars:
+    comment: "pug comma-separated iteration variables"
+    match: "([^, ]+)(?:(,) ([^, ]+))* (in)"
+    captures:
+      "1":
+        patterns: [
+          {include: "source.moon#variable_name"}
+        ]
+      "2":
+        name: "pug.meta.operator"
+      "3":
+        patterns: [
+          {include: "source.moon#variable_name"}
+        ]
+      "4":
+        name: "pug.meta.keyword.control"
 
   html_entity:
     patterns: [
@@ -810,7 +846,7 @@ repository:
         match: "{"
         name: "invalid.illegal.tag.pug"
       }
-      {include: "source.moon#expression"}
+      {include: "#expression"}
     ]
 
   mixin_call:
@@ -834,7 +870,7 @@ repository:
             captures:
               "1": name: "entity.other.attribute-name.tag.pug"
           }
-          {include: "source.moon#expression"}
+          {include: "#expression"}
         ]
       }
       {
@@ -864,7 +900,7 @@ repository:
         name: "meta.operator.constant.expr"
       "2":
         patterns: [
-          {include: "source.moon#expression"}
+          {include: "#expression"}
         ]
 
   expression:
@@ -925,11 +961,28 @@ repository:
         name: "invalid.illegal.tag.pug"
       }
       {
-        name: "attribute_value"
+        name: "attribute-value"
         begin: "=\\s*"
-        end: "$|(?=\\s+[a-zA-Z\\$_]\\w*(\\.\\w+)*\\=)|(?=,|\\))"
+        end: "(?=\\s+[a-zA-Z\\$_]\\w*(\\.\\w+)*(\\=|\\)$))|(?=\\)(\\.|:|&|$))"
         patterns: [
-          {include: "#expression"}
+          {
+            include: "source.moon#boolean"
+          }
+          {
+            include: "source.moon#numeric"
+          }
+          {
+            include: "source.moon#string"
+          }
+          {
+            include: "source.moon#function_call_with_parens"
+          }
+          {
+            include: "source.moon#variable_name"
+          }
+          {
+            include: "source.moon#parens"
+          }
         ]
       }
     ]
@@ -941,7 +994,7 @@ repository:
     end: "(\\))"
     name: "attributes.function.pug"
     patterns: [
-      {include: "source.moon#expression"}
+      {include: "#expression"}
     ]
 
   tag_head:
