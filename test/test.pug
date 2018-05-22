@@ -2,8 +2,19 @@ doctype html
 - var em_sometext = "<em>some text</em>"
 -var var2 = 'no spaces after -'
 
+- lang = 'en'
+//- test = -> 1, 2
+//- a, b = test!
+
+-
+  x = 1
+  y = 2
+  test = (...) -> x, y
+
+//- p= lang + '-US'
+
 html
-  head
+  head(lang=lang)
     script#idscript.script(type="text/javascript",   qwerqwer)(test="123", lol=(1+
       1),  other).
       var la = lala;
@@ -40,12 +51,12 @@ html
           li.lala= lala
 
     .test + mixin use
-      +lala(123, "mixin + call 1")
+      +lala(123, "mixin + call 1", some_var)
       +lala(123, "mixin + call 1").extra-class(extra-attribute="parse me in attributes") Text
 
     mixin another()
       - console.log(attributes)
-      input&attributes({cde: 3434})(ccc=343)&attributes(attributes).cls&attributes([1,2,'no'])
+      input&attributes({cde: 3434})(ccc=343)&attributes(attributes).cls&attributes({1,2,'no'})
 
     .test mixin attributes new syntax
       +another(abc=123, bcd='lol')
@@ -58,15 +69,13 @@ html
         this is some text inside the p tag
         since it is only a html comment, jade will render it normally
 
-    div
-      p: iv:asd-_FD tag name weird &amp;characters
-      p
-        asdf:    ab:[this should be text
+    a:b#home: p.
+      p:b: p: asd-_FD tag name weird &amp;characters
 
-      tstr = 'strong'
+      - tstr = 'strong'
       #{tstr} iterpolated tag name
 
-    pre
+    #account
       em this is inside 'em' tag <br/>
       | [this is rendered as standalone text
       | ##this too
@@ -74,7 +83,7 @@ html
 
     div(style="background-color: #eef") some examples of dot text blocks bellow:
 
-      #{'di' + 'v'}: em.
+      #{'di' + 'v'}: em: em.
         some text block inside tag with interpolated name and subtag
 
       .lol: strong(prop="()(())").
@@ -88,18 +97,15 @@ html
         another case of text block with interpolated text: #{10*100}
 
       div [this will be text
-        p.
-          and this will be a text block
+        p
+          and this: will be a text block
           inside a p tag
-
-    #{'d' + 'i' + 'v'}.
-      em this should be italic because it is not a text block, and start the line with '}.'
 
     p a tag with text ending in dot.
       strong &nbsp;and child tags to show that the dot text block detection is
         em &nbsp;working
 
-    div: div: thisisavar = 'THIS_IS_A_VARIABLE'
+    div: div: - thisisavar = 'THIS_IS_A_VARIABLE'
       = 'thisisavar is a variable declaration as demonstrated here: ' + thisisavar
 
     sub2: tag2: -console.log('unbuffered js inside subtag?')
@@ -109,25 +115,26 @@ html
     p this tag has <em>embedded html #{console}</em>
 
     textblock.
+      test
       <div style="color: red;">
-        <p>this is embedded html in dot text block with a interpolated value: #{'te'+'st'+1}</p>
+        <p>this is embedded html in dot text block with a interpolated value: #{'te' + 'st' + 1}</p>
       </div>
 
     <div style="color: green;">
-    <p>this is directly embedded html with a interpolated value: #{'te'+'st'+2}</p>
+      <p>this is directly embedded html with a interpolated value: #{'te' + 'st' + 2}</p>
     </div>
 
-    emb
+    em
       div regular tag and text
         | <div style="color: blue;">
-        |   <p>this is embedded html in pipe text with a interpolated value: #{'te'+'st'+2}</p>
+        |   <p>this is embedded html in pipe text with a interpolated value: #{'te' + 'st' + 2}</p>
         | </div>
 
+    - _test = 2
     p: em(sdf-+a\||.asd=123,   type="te\x98t\u8876",lol,
-      lol2
-      lol3, abc = _test, fdg=console.log(123, (1 + (1 + 2)), undefined || true && "sdf#{1+1}asdf")
-      asdf, bcd=[123, [_test, {asdf: console.log(123)}]], afd={a: 1+1, 'b': {c: (null)}}
-      style="background-color: #ccc;") this is a tag with all sorts of crazy properties properly highlighted
+      lol2 abc=_test def="\#xxx"
+      style="background-color: #ccc;"
+    ) this is a tag with all sorts of crazy properties properly highlighted
 
     p(qwer,|asdf, zxcv, poiu)= console + NaN
 
@@ -159,7 +166,7 @@ html
         yield
 
     div a list generated in another loop as subtag code:
-      ul: for i in [1,2,3,null]
+      ul: for i in {1, 2, 3}
         li= i
 
     div(style="color: red;"): append testblock1
@@ -174,7 +181,7 @@ html
     else
       p and this won't show
 
-    friends = 10
+    - friends = 10
     case friends
       when 0
         p you have no friends
@@ -231,9 +238,9 @@ html
     p Crazy #[em: strong #[span #[='inline']]: test]
     p We can also #[strong combine #[em multiple #[img(src='http://jade-lang.com/style/logo.png')]]]
     p Another #[strong.lil#okf(acs=[1,2]) test [[with brackets]] [in#[='side']]]
-    #[strong start] line with #[i]\#[j] inline
-    #[#[#[#[#[i a] b] c] d]e]
-    #[asdf.lol(fff)#[asdf]]
+    | #[strong start] line with #[i]\#[j] inline
+    //- | #[asdf.lol(fff)#[asdf]]
+    //- | #[#[#[#[#[i a] b] c] d]e]
 
     p.
       block with #[i inline] tag.
